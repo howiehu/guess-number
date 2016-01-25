@@ -17,17 +17,18 @@
 ## 需要使用的测试工具
 
 - [JUnit](http://junit.org)
-- [Mockito](https://code.google.com/p/mockito/)
-- [FEST Fluent Assertions](https://github.com/alexruiz/fest-assert-2.x)
+- [Mockito](http://mockito.org/)
 
 ## 内容
 
 用TDD（Test Driven Development）开发一个简单的猜数字游戏：
 
-- 游戏开始后，系统会随机给出四个不重复的数字。由用户输入自己猜测的四个数字。
-- 如果数字猜对而且位置也对，就是1一个A。
-- 如果数字猜对但位置不对，就是一个B。
-- 返回结果是如“2A1B”这样的字串。
+- 当游戏开始时，打印“Welcome!”空一行打印 “Please input your number(6): “
+- 每次输入完并敲击回车，就会在下面打印出xAxB，然后空一行打印出新的”Please input your number(x): “
+- 当输入的数字包含重复数字并回车时，在下面打印”Cannot input duplicate numbers!”
+- 当6次都没有猜中的时候，打印”Game Over”并退出
+- 当猜中的时候，不要打印4A0B,而是打印”Congratulations!”并退出
+
 
 例如：
 
@@ -46,10 +47,6 @@
 - 严格按照“先测试，后实现”的方式编写代码，但需要搞清楚“何时应该先写测试，何时应该后写测试”这个问题。
 - 严格按照面向对象（OOP）的方式编写代码。
 
-## 扩展思考
-
-- 什么是测试驱动开发（TDD）是行为驱动开发（BDD），以及这两者之间的关系。
-
 ## 验收作业的层次
 
 验收层次从低到高排序，完成时切勿好高骛远，应根据自身水平脚踏实地循序渐进，每一层的推进都是更多知识的学习。
@@ -57,4 +54,3 @@
 1. 是否符合测试驱动开发的要求
 2. 是否符合面向对象编程的要求
 3. 是否合理使用了Java 8的新特性
-4. 是否使用了 [Guava](https://code.google.com/p/guava-libraries/) 改进编程
