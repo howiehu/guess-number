@@ -150,6 +150,45 @@ public class Game_Test {
         inOrder.verify(out).println("Game Over");
     }
 
+    @Test
+    public void warning_when_input_repeat_numbers() throws IOException {
+
+        when(answer.generate()).thenReturn("1234");
+
+        when(reader.readLine())
+                .thenReturn("5678")
+                .thenReturn("1678")
+                .thenReturn("1278")
+                .thenReturn("1228")
+                .thenReturn("1248")
+                .thenReturn("1243")
+                .thenReturn("1245");
+
+        when(guess.compare("1234", "5678")).thenReturn("0A0B");
+        when(guess.compare("1234", "1678")).thenReturn("1A0B");
+        when(guess.compare("1234", "1278")).thenReturn("2A0B");
+        when(guess.compare("1234", "1248")).thenReturn("2A1B");
+        when(guess.compare("1234", "1243")).thenReturn("2A2B");
+        when(guess.compare("1234", "1245")).thenReturn("2A1B");
+
+        game().start();
+
+        InOrder inOrder = verifyInOrder();
+        inOrder.verify(out).println("0A0B");
+        inOrder.verify(out).println("Please input your number(5):");
+        inOrder.verify(out).println("1A0B");
+        inOrder.verify(out).println("Please input your number(4):");
+        inOrder.verify(out).println("2A0B");
+        inOrder.verify(out).println("Please input your number(3):");
+        inOrder.verify(out).println("Cannot input duplicate numbers!");
+        inOrder.verify(out).println("Please input your number(3):");
+        inOrder.verify(out).println("2A1B");
+        inOrder.verify(out).println("Please input your number(2):");
+        inOrder.verify(out).println("2A2B");
+        inOrder.verify(out).println("Please input your number(1):");
+        inOrder.verify(out).println("Game Over");
+    }
+
     private Game game() {
         return new Game(reader, out, answer, guess);
     }
