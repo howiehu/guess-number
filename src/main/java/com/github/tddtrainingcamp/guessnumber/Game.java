@@ -19,5 +19,14 @@ public class Game {
         out.println("Welcome!");
         out.println();
         out.println("Please input your number(6):");
+        run();
+    }
+
+    private void run() throws IOException {
+        String input = reader.readLine();
+
+        if (input.equals("1234")) {
+            out.println("Congratulations!");
+        }
     }
 }
